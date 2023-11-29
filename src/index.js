@@ -9,16 +9,12 @@ async function getPresignedUrl() {
     s3.createPresignedPost(
       {
         Bucket: 'devel-file-service',
-<<<<<<< HEAD
         Fields: {
           key: 'ok.txt',
           'x-amz-storage-class': 'INTELLIGENT_TIERING',
         },
         Conditions: [['content-length-range', '0', '528248']],
         Expires: 30, // 30s
-=======
-        Fields: { key: 'ok.txt', 'x-amz-storage-class': 'INTELLIGENT_TIERING' },
->>>>>>> ae9a5e67671c63cabc7137ea48600e96dc31f7d7
       },
       (err, data) => {
         if (!err) {
@@ -45,11 +41,7 @@ async function postFile(presignedUrl) {
     method: 'POST',
     body: form,
   });
-<<<<<<< HEAD
-  console.log(result);
-=======
 
->>>>>>> ae9a5e67671c63cabc7137ea48600e96dc31f7d7
   if (!result.ok) {
     console.log(`error upload [msg to error:${result.statusText}]`);
     return;
