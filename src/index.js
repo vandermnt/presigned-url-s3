@@ -13,12 +13,7 @@ async function getPresignedUrl() {
           key: 'ok.txt',
           'x-amz-storage-class': 'INTELLIGENT_TIERING',
         },
-        Conditions: [
-          // ['content-length-range', '0', '528248'],
-          // ['starts-with', '$Content-Type', 'text/'],
-          ['eq', '$Content-Type', 'text/plain'],
-          // { 'Content-Type': 'text/plain' },
-        ],
+        Conditions: [['content-length-range', '0', '528248']],
         Expires: 30, // 30s
       },
       (err, data) => {
@@ -44,9 +39,6 @@ async function postFile(presignedUrl) {
 
   const result = await fetch(presignedUrl.url, {
     method: 'POST',
-    headers: {
-      content-t
-    }
     body: form,
   });
   console.log(result);
